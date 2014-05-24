@@ -4,7 +4,7 @@ namespace :linked_files do
   task :touch do
     on release_roles :all do
       within shared_path do
-        fetch(:linked_files).each do |file|
+        fetch(:linked_files, []).each do |file|
           execute :touch, file
           info "Touched: #{file}"
         end
