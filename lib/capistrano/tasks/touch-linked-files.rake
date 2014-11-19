@@ -1,3 +1,4 @@
+require 'fileutils'
 namespace :linked_files do
 
   desc 'Touches all your linked files'
@@ -5,6 +6,8 @@ namespace :linked_files do
     on release_roles :all do
       within shared_path do
         fetch(:linked_files, []).each do |file|
+          info "Making sure dir exists: #{File.dirname(file)}"
+          execute :mkdir, '-p', File.dirname(file)
           execute :touch, file
           info "Touched: #{file}"
         end
