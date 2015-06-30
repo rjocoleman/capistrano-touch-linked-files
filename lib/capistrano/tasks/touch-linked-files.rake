@@ -15,7 +15,6 @@ namespace :linked_files do
     end
   end
 
-  before 'deploy:check:make_linked_dirs', 'linked_files:touch'
   before 'deploy:check:linked_files', 'linked_files:touch'
 
 end
